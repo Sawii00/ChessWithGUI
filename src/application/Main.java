@@ -7,6 +7,14 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/*@TODO WHERE THERE'S STUFF TO DO
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
+
 
 public class Main extends Application {
 	

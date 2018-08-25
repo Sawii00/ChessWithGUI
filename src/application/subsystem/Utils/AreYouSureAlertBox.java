@@ -9,18 +9,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class BasicAlertBox {
-	
-	public BasicAlertBox(String title, String message, int width,int height) {
-		
-		display(title,message,width,height);
-		
+public class AreYouSureAlertBox {
+
+	public AreYouSureAlertBox(String title, String message, int width, int height, IToDo todo) {
+		display(title, message, width, height, todo);
 	}
-	
-	
-	private void display(String title, String message, int width, int height) {
+
+	private void display(String title, String message, int width, int height, IToDo todo) {
 		Stage window = new Stage();
-		
+
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle(title);
 		window.setMinWidth(width);
@@ -28,23 +25,35 @@ public class BasicAlertBox {
 		window.setMinHeight(height);
 		window.setMaxHeight(height);
 		window.setResizable(false);
-		
+
 		Label label = new Label();
 		label.setText(message);
-		
-		Button closeButton = new Button("Close");
-		closeButton.setOnAction(e->window.close());
-		
+
+		Button yes = new Button("Yes");
+		yes.setOnAction(e -> {
+			onClose(todo);
+			window.close();
+		});
+		Button no = new Button("No");
+		no.setOnAction(e -> {
+			window.close();
+		});
+
 		VBox layout = new VBox();
-		layout.getChildren().addAll(label,closeButton);
+		layout.getChildren().addAll(label, yes, no);
 		layout.setAlignment(Pos.CENTER);
-		
-		VBox.setMargin(closeButton, new Insets(20,0,0,0));
-		
+
+		VBox.setMargin(yes, new Insets(20, 0, 0, 0));
+		VBox.setMargin(no, new Insets(20, 0, 0, 0));
+
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
-		
+
 		window.showAndWait();
+	}
+
+	void onClose(IToDo todo) {
+		todo.todo();
 	}
 
 }
