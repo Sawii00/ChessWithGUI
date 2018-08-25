@@ -27,6 +27,7 @@ public abstract class BasicPiece {
 		if(isValidPath(destination)) {
 			Board.squares[position.id_x][position.id_y].piece = null;
 			Board.squares[destination.position.id_x][destination.position.id_y].piece = this;
+			System.out.println("mosso");
 		}else {
 			System.out.println("Rotto");
 		}
