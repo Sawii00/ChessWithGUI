@@ -1,5 +1,7 @@
 package application.subsystem.Utils;
 
+import application.subsystem.Game.Square;
+
 public class Position {
 	
 	public int id_x;
@@ -19,6 +21,10 @@ public class Position {
 	}
 	public String toString() {
 		return "X: "+id_x+ " Y: "+id_y;
+	}
+	public void syncPos(Square destination) {
+		id_x = destination.position.id_x;
+		id_y = destination.position.id_y;
 	}
 	
 	

@@ -8,7 +8,7 @@ import application.subsystem.Utils.Type;
 public class Pawn extends BasicPiece {
 
 	Type type;
-	
+
 	public boolean isFirstMove = true;
 
 	public Pawn(Position position, Player player) {
@@ -22,27 +22,23 @@ public class Pawn extends BasicPiece {
 	@Override
 	public boolean isValidPath(Square destination) {
 
-		// NEED TO IMPLEMENT THE CAPABILITY TO MOVE DIAGONALLYFORWARD TO EAT AN ENEMY
-		// PIECE
 
 		if (isFirstMove && position.id_x == destination.position.id_x && position.id_y != destination.position.id_y
 				&& position.id_y - destination.position.id_y <= 2) {
 			isFirstMove = false;
 			return true;
-		} else if(destination.piece != null && destination.position.id_x-position.id_x == 1 && destination.position.id_y-position.id_y == 1) {
+		} else if (destination.piece != null && Math.abs(destination.position.id_x - position.id_x) == 1
+				&& Math.abs(destination.position.id_y - position.id_y) == 1) {
+			return true;
+		} else if (position.id_x == destination.position.id_x
+				&& Math.abs(destination.position.id_y - position.id_y) == 1) {
+
 			isFirstMove = false;
 			return true;
-		}else {
-			if (position.id_x == destination.position.id_x && destination.position.id_y - position.id_y == 1) {
-				isFirstMove = false;
-				return true;
-			} else {
-				return false;
-			}
+		} else {
+			return false;
 		}
 	}
-
-	
 
 	@Override
 	public Type getType() {
