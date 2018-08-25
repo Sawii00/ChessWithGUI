@@ -1,6 +1,6 @@
 package application;
 	
-import javafx.animation.AnimationTimer;
+//import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -20,14 +20,19 @@ public class Main extends Application {
 			mainScene = new Scene(root,720,720);
 			primaryStage.setTitle("Chess");
 			primaryStage.setScene(mainScene);
+			primaryStage.setResizable(false);
 			 
-		    new AnimationTimer()
-		    {
-		        public void handle(long currentNanoTime)
-		        {
+			//THIS IS SORT OF A GAMELOOP IN CASE WE NEED IT
+			
+//		    new AnimationTimer()
+//		    {
+//		        public void handle(long currentNanoTime)
+//		        {
 //		        	Controller.syncArrayGrid();
-		        }
-		    }.start();
+//		        }
+//		    }.start();
+			
+			
 			primaryStage.show();
 			
 			
