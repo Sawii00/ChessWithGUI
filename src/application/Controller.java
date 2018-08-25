@@ -1,9 +1,9 @@
 package application;
 
 import application.subsystem.Game.Board;
+import application.subsystem.Pieces.BasicPiece;
 import javafx.scene.control.Label;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
@@ -66,8 +66,12 @@ public class Controller {
 		int targetRowID = GridPane.getRowIndex((Label) e.getSource());
 		int targetColID = GridPane.getColumnIndex((Label) e.getSource());
 		// CORRECTLY RETRIEVED THE R0W AND COL ID OF THE GRID LETS GOOOOOOOOOOO
-		asdasdasd
 
+		//retrieve the moving piece
+		BasicPiece moving = Board.squares[sourceColID][sourceRowID].piece;
+		moving.move(Board.squares[targetColID][targetRowID]);
+		
+		
 		e.setDropCompleted(true);
 		e.consume();
 	}

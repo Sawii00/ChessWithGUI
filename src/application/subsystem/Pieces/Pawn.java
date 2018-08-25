@@ -26,7 +26,7 @@ public class Pawn extends BasicPiece {
 		// PIECE
 
 		if (isFirstMove && position.id_x == destination.position.id_x && position.id_y != destination.position.id_y
-				&& destination.position.id_y - position.id_y <= 2) {
+				&& position.id_y - destination.position.id_y <= 2) {
 			isFirstMove = false;
 			return true;
 		} else if(destination.piece != null && destination.position.id_x-position.id_x == 1 && destination.position.id_y-position.id_y == 1) {
