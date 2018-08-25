@@ -25,18 +25,7 @@ public class Controller {
 
 		gridPane = (GridPane) Main.mainScene.lookup("#gridPane");
 
-		for (int i = 0; i < Board.squares.length; i++) {
-			for (int j = 0; j < Board.squares[i].length; j++) {
-				tempLabel = (Label) gridPane.lookup("#pos" + i + "" + j + "");
-
-				try {
-					tempLabel.setText(Board.squares[i][j].piece.getType().toString());
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-			}
-		}
-
+		syncArrayGrid();
 	}
 
 	public void dragDetected(MouseEvent e) {
@@ -62,10 +51,13 @@ public class Controller {
 		Dragboard db = e.getDragboard();
 		int sourceRowID = Integer.parseInt(db.getString().split(",")[0]);
 		int sourceColID = Integer.parseInt(db.getString().split(",")[1]);
+		
+		System.out.println(sourceColID+" "+sourceRowID);
 
 		int targetRowID = GridPane.getRowIndex((Label) e.getSource());
 		int targetColID = GridPane.getColumnIndex((Label) e.getSource());
 		// CORRECTLY RETRIEVED THE R0W AND COL ID OF THE GRID LETS GOOOOOOOOOOO
+		System.out.println(targetColID+" "+targetRowID);
 
 		//retrieve the moving piece
 		BasicPiece moving = Board.squares[sourceColID][sourceRowID].piece;
@@ -74,6 +66,35 @@ public class Controller {
 		
 		e.setDropCompleted(true);
 		e.consume();
+		syncArrayGrid();
+	}
+	
+	public static void syncArrayGrid() {
+		
+		for (int i = 0; i < Board.squares.length; i++) {
+			for (int j = 0; j < Board.squares[i].length; j++) {
+				tempLabel = (Label) gridPane.lookup("#pos" + i + "" + j + "");
+
+				try {
+					tempLabel.setText(Board.squares[i][j].piece.getType().toString());
+				} catch (Exception e) {
+					tempLabel.setText("");
+				}
+				
+				try {
+					System.out.print(Board.squares[i][j].piece.getType().toString()+" ");
+				} catch (Exception e) {
+					System.out.print("null ");
+				}
+				
+				
+			}
+			System.out.println("");
+		}
+		
+		
+		
+		
 	}
 
 }

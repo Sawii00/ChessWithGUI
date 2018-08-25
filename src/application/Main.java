@@ -1,5 +1,6 @@
 package application;
 	
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -19,6 +20,14 @@ public class Main extends Application {
 			mainScene = new Scene(root,720,720);
 			primaryStage.setTitle("Chess");
 			primaryStage.setScene(mainScene);
+			 
+		    new AnimationTimer()
+		    {
+		        public void handle(long currentNanoTime)
+		        {
+//		        	Controller.syncArrayGrid();
+		        }
+		    }.start();
 			primaryStage.show();
 			
 			
