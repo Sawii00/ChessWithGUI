@@ -66,6 +66,7 @@ public class Controller {
 		int targetRowID = GridPane.getRowIndex((Label) e.getSource());
 		int targetColID = GridPane.getColumnIndex((Label) e.getSource());
 		// CORRECTLY RETRIEVED THE R0W AND COL ID OF THE GRID LETS GOOOOOOOOOOO
+		asdasdasd
 
 		e.setDropCompleted(true);
 		e.consume();
