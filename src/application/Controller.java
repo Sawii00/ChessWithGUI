@@ -25,17 +25,7 @@ public class Controller {
 
 		gridPane = (GridPane) Main.mainScene.lookup("#gridPane");
 
-		for (int i = 0; i < Board.squares.length; i++) {
-			for (int j = 0; j < Board.squares[i].length; j++) {
-				tempLabel = (Label) gridPane.lookup("#pos" + i + "" + j + "");
-
-				try {
-					tempLabel.setText(Board.squares[i][j].piece.getType().toString());
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-			}
-		}
+		syncArrayGrid();
 
 	}
 
@@ -74,6 +64,21 @@ public class Controller {
 		
 		e.setDropCompleted(true);
 		e.consume();
+	}
+	
+	public static void syncArrayGrid() {
+		
+		for (int i = 0; i < Board.squares.length; i++) {
+			for (int j = 0; j < Board.squares[i].length; j++) {
+				tempLabel = (Label) gridPane.lookup("#pos" + i + "" + j + "");
+
+				try {
+					tempLabel.setText(Board.squares[i][j].piece.getType().toString());
+				} catch (Exception e) {
+					tempLabel.setText("");
+				}
+			}
+		}
 	}
 
 }
