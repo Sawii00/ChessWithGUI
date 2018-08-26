@@ -106,6 +106,7 @@ public class Controller {
 		Menu game = menu.getMenus().get(0); 
 		Menu help = menu.getMenus().get(1);
 		
+		//@TODO we have to set the reset button
 		MenuItem reset = game.getItems().get(0);
 		reset.setOnAction(e->{
 			
