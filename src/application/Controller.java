@@ -4,7 +4,10 @@ import application.subsystem.Game.Board;
 import application.subsystem.Pieces.BasicPiece;
 import application.subsystem.Utils.AreYouSureAlertBox;
 import application.subsystem.Utils.BasicAlertBox;
+import application.subsystem.Utils.IToDo;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -99,32 +102,31 @@ public class Controller {
 			// System.out.println("");
 		}
 	}
-	
+
 	private static void setMenus() {
-		MenuBar menu = (MenuBar)Main.mainScene.lookup("#menuBar");
-		//@TODO: IF WE CHANGE NUMBER OF MENUS WE GOTTA CHANGE THE ID DOWN BELOW
-		Menu game = menu.getMenus().get(0); 
+		MenuBar menu = (MenuBar) Main.mainScene.lookup("#menuBar");
+		// @TODO: IF WE CHANGE NUMBER OF MENUS WE GOTTA CHANGE THE ID DOWN BELOW
+		Menu game = menu.getMenus().get(0);
 		Menu help = menu.getMenus().get(1);
-		
-		//@TODO we have to set the reset button
+
+		// @TODO we have to set the reset button
 		MenuItem reset = game.getItems().get(0);
 		reset.setOnAction(e->{
-			
+			initialize();
 			
 		});
+
 		MenuItem close = game.getItems().get(1);
-		close.setOnAction(e->{
-			//YOU MIGHT WANNA DO SOME SAVING BEFORE QUITTING :)
+		close.setOnAction(e -> {
+			// YOU MIGHT WANNA DO SOME SAVING BEFORE QUITTING :)
 			new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 300, ()->Platform.exit());
 		});
-		
+
 		MenuItem about = help.getItems().get(0);
-		about.setOnAction(e->{
-			new BasicAlertBox("About","Created By Sawii00 and Felucco",200,200);
+		about.setOnAction(e -> {
+			new BasicAlertBox("About", "Created By Sawii00 and Felucco", 200, 200);
 		});
-		
-		
-		
+
 	}
 
 }
