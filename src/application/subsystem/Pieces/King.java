@@ -1,5 +1,8 @@
 package application.subsystem.Pieces;
 
+import java.util.ArrayList;
+
+import application.subsystem.Game.Board;
 import application.subsystem.Game.Player;
 import application.subsystem.Game.Square;
 import application.subsystem.Utils.Position;
@@ -30,6 +33,17 @@ public class King extends BasicPiece {
 	@Override
 	public Type getType() {
 		return type;
+	}
+	
+	@Override
+	public ArrayList<Square> path(Square destination) {
+		ArrayList<Square> path = new ArrayList<Square>();
+
+		path.add(Board.squares[position.id_x][position.id_y]);
+		path.add(destination);
+
+		return path;
+
 	}
 
 }
