@@ -14,7 +14,8 @@ public class Board {
 	static public Square[][] squares; 
 	int width, height = 8;
 	
-	Player player1,player2;
+	public static Player player1;
+	public static Player player2;
 
 
 	public Board(int width, int height) {
