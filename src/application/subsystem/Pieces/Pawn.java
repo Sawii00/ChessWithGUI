@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import application.subsystem.Game.Board;
 import application.subsystem.Game.Player;
+import application.subsystem.Game.PlayerManager;
 import application.subsystem.Game.Square;
 import application.subsystem.Utils.Position;
 import application.subsystem.Utils.Type;
@@ -27,7 +28,7 @@ public class Pawn extends BasicPiece {
 		
 		//Needa divide as upper player can only go downwards and bottom player can only go upwards
 
-		if (player == Board.player1) {
+		if (player == PlayerManager.player1) {
 			if (isFirstMove && position.id_x == destination.position.id_x && position.id_y != destination.position.id_y
 					&& destination.position.id_y - position.id_y <= 2) {
 				isFirstMove = false;
