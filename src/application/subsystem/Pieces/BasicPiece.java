@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import application.subsystem.Game.Board;
 import application.subsystem.Game.Player;
+import application.subsystem.Game.PlayerManager;
 import application.subsystem.Game.Square;
 import application.subsystem.Utils.Position;
 import application.subsystem.Utils.Type;
@@ -25,8 +26,68 @@ public abstract class BasicPiece {
 
 	public abstract ArrayList<Square> path(Square destination);
 
-	public void move(Square destination) {
+	public boolean calcDestination(Square destination) {
+
 		if (isValidPath(destination)) {
+
+			for (Square i : path(destination)) {
+				if (this.position.isEqual(i.position)) {
+
+					continue;
+
+				} else {
+
+					if (i.piece != null) {
+
+						if (this.player == i.piece.player) {
+
+							System.out.print("Incontrato pezzo alleato su ");
+							System.out.print(i.position.id_x);
+							System.out.print(", ");
+							System.out.println(i.position.id_y);
+
+							return false;
+
+						} else {
+
+							System.out.print("Incontrato pezzo nemico su ");
+							System.out.print(i.position.id_x);
+							System.out.print(", ");
+							System.out.println(i.position.id_y);
+
+							if (i == destination) {
+								System.out.println("Destinazione-->Pezzo mangiato");
+								return true;
+							} else {
+
+								System.out.println("Non destinazione, mossa non valida");
+								return false;
+
+							}
+
+						}
+
+					} else {
+						continue;
+
+					}
+
+				}
+			}
+
+			return true;
+
+		} else {
+
+			return false;
+
+		}
+
+	}
+
+	public void move(Square destination) {
+		if (calcDestination(destination)) {
+			PlayerManager.successfulMove();
 			for (Square i : path(destination)) {
 				System.out.print(i.position.id_x);
 				System.out.print(", ");
@@ -37,9 +98,7 @@ public abstract class BasicPiece {
 				System.out.println("mosso");
 				if (destination.piece != null) {
 					this.eat(destination.piece);
-
 				}
-
 			}
 		} else {
 			System.out.println("Rotto");

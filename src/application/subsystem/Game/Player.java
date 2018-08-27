@@ -20,7 +20,6 @@ public class Player {
 	public void move(BasicPiece piece, Square destination) {
 		if (myTurn) {
 			piece.move(destination);
-			PlayerManager.successfulMove();			
 			//probably we have to set this flag in the if statement of the actual movement of the basicpiece (we want the move to occur)
 		}
 		
