@@ -26,7 +26,7 @@ public class Pawn extends BasicPiece {
 	@Override
 	public boolean isValidPath(Square destination) {
 		
-		//Needa divide as upper player can only go downwards and bottom player can only go upwards
+		//Need divide as upper player can only go downwards and bottom player can only go upwards
 
 		if (player == PlayerManager.player1) {
 			if (isFirstMove && position.id_x == destination.position.id_x && position.id_y != destination.position.id_y
@@ -36,7 +36,7 @@ public class Pawn extends BasicPiece {
 			} else if (destination.piece != null && Math.abs(destination.position.id_x - position.id_x) == 1
 					&& destination.position.id_y - position.id_y == 1) {
 				return true;
-			} else if (position.id_x == destination.position.id_x && destination.position.id_y - position.id_y == 1) {
+			} else if (position.id_x == destination.position.id_x && destination.position.id_y - position.id_y == 1 && destination.piece == null) {
 
 				isFirstMove = false;
 				return true;
@@ -52,7 +52,7 @@ public class Pawn extends BasicPiece {
 			} else if (destination.piece != null && Math.abs(destination.position.id_x - position.id_x) == 1
 					&& position.id_y - destination.position.id_y == 1) {
 				return true;
-			} else if (position.id_x == destination.position.id_x && position.id_y - destination.position.id_y == 1) {
+			} else if (position.id_x == destination.position.id_x && position.id_y - destination.position.id_y == 1 && destination.piece == null) {
 
 				isFirstMove = false;
 				return true;
