@@ -1,6 +1,8 @@
 package application;
 
 import application.subsystem.Game.Board;
+import application.subsystem.Game.Player;
+import application.subsystem.Game.PlayerManager;
 import application.subsystem.Pieces.BasicPiece;
 import application.subsystem.Utils.AreYouSureAlertBox;
 import application.subsystem.Utils.BasicAlertBox;
@@ -24,16 +26,17 @@ public class Controller {
 	static Board board;
 	static GridPane gridPane;
 	static Label tempLabel;
+	
+	
 
 	public Controller() {
 
 	}
 
 	public static void initialize() {
+		new PlayerManager();
 		board = new Board(8, 8);
-
 		gridPane = (GridPane) Main.mainScene.lookup("#gridPane");
-
 		syncArrayGrid();
 		setMenus();
 
@@ -72,7 +75,11 @@ public class Controller {
 
 		// retrieve the moving piece
 		BasicPiece moving = Board.squares[sourceColID][sourceRowID].piece;
-		moving.move(Board.squares[targetColID][targetRowID]);
+		//moving.move(Board.squares[targetColID][targetRowID]);
+		
+		moving.player.move(moving, Board.squares[targetColID][targetRowID]);
+		
+		
 
 		e.setDropCompleted(true);
 		e.consume();
