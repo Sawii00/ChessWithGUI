@@ -1,15 +1,12 @@
 package application;
 
 import application.subsystem.Game.Board;
-import application.subsystem.Game.Player;
 import application.subsystem.Game.PlayerManager;
 import application.subsystem.Pieces.BasicPiece;
 import application.subsystem.Utils.AreYouSureAlertBox;
 import application.subsystem.Utils.BasicAlertBox;
-import application.subsystem.Utils.IToDo;
+import application.subsystem.Utils.ConnectionBox;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -114,7 +111,8 @@ public class Controller {
 		MenuBar menu = (MenuBar) Main.mainScene.lookup("#menuBar");
 		// @TODO: IF WE CHANGE NUMBER OF MENUS WE GOTTA CHANGE THE ID DOWN BELOW
 		Menu game = menu.getMenus().get(0);
-		Menu help = menu.getMenus().get(1);
+		Menu multiplayer = menu.getMenus().get(1);
+		Menu help = menu.getMenus().get(2);
 
 		// @TODO we have to set the reset button
 		MenuItem reset = game.getItems().get(0);
@@ -126,8 +124,21 @@ public class Controller {
 		MenuItem close = game.getItems().get(1);
 		close.setOnAction(e -> {
 			// YOU MIGHT WANNA DO SOME SAVING BEFORE QUITTING :)
-			new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 300, ()->Platform.exit());
+			new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, ()->Platform.exit());
 		});
+		
+		MenuItem host = multiplayer.getItems().get(0);
+		host.setOnAction(e->{
+			//handle the hosting (Server)
+			
+			
+		});
+		MenuItem connect = multiplayer.getItems().get(1);
+		connect.setOnAction(e->{
+			//handle the client
+			new ConnectionBox("Host", 250, 250);
+		});
+		
 
 		MenuItem about = help.getItems().get(0);
 		about.setOnAction(e -> {

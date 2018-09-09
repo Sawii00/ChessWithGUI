@@ -1,7 +1,9 @@
 package application;
 	
+import application.subsystem.Utils.AreYouSureAlertBox;
 //import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -29,6 +31,11 @@ public class Main extends Application {
 			primaryStage.setTitle("Chess");
 			primaryStage.setScene(mainScene);
 			primaryStage.setResizable(false);
+			
+			primaryStage.setOnCloseRequest(e->{
+				e.consume();
+				new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, ()->Platform.exit());
+			});
 			 
 			//THIS IS SORT OF A GAMELOOP IN CASE WE NEED IT
 			
