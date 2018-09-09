@@ -1,6 +1,7 @@
-package application.subsystem.Utils;
+package application.subsystem.Networking;
 
-
+import application.Utils;
+import application.subsystem.Utils.BasicAlertBox;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,7 +13,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ConnectionBox {
-	
+
+	private String error = "Ip has to be in the format: xxx.xxx.xxx.xxx and the port must be greater than 1000 and less than 65535";
+
 	public ConnectionBox(String title, int width, int height) {
 
 		display(title, width, height);
@@ -36,30 +39,32 @@ public class ConnectionBox {
 		TextField ip = new TextField();
 		ip.setEditable(true);
 		ip.setPromptText("IP:");
-		
+
 		TextField port = new TextField();
 		port.setEditable(true);
 		port.setPromptText("PORT:");
-		
+
 		Button button = new Button("Connect");
-		button.setOnMouseClicked(e->{
-			System.out.println("Connecting to: "+ip.getText()+", Port: "+port.getText());
-			
-			
-			
-			
-			window.close();
+		button.setOnMouseClicked(e -> {
+			// we check if ip and port are valid
+			if (Utils.validIP(ip.getText()) && Utils.validPORT(port.getText())) {
+				System.out.println("Connecting to: " + ip.getText() + ", Port: " + port.getText());
+				new Client(ip.getText(),port.getText());
+				// MANAGE SERVER HOSTING
+
+				window.close();
+			} else {
+				new BasicAlertBox("Error", error, 600, 150);
+			}
+
 		});
-		
+
 		VBox layout = new VBox();
-		layout.getChildren().addAll(label, ip, port,button);
+		layout.getChildren().addAll(label, ip, port, button);
 		layout.setAlignment(Pos.CENTER);
-
 		VBox.setMargin(button, new Insets(20, 0, 0, 0));
-
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
-
 		window.showAndWait();
 	}
 }

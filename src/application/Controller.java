@@ -2,10 +2,10 @@ package application;
 
 import application.subsystem.Game.Board;
 import application.subsystem.Game.PlayerManager;
+import application.subsystem.Networking.ConnectionBox;
 import application.subsystem.Pieces.BasicPiece;
 import application.subsystem.Utils.AreYouSureAlertBox;
 import application.subsystem.Utils.BasicAlertBox;
-import application.subsystem.Utils.ConnectionBox;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
