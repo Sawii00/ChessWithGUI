@@ -48,9 +48,10 @@ public class ConnectionBox {
 		button.setOnMouseClicked(e -> {
 			// we check if ip and port are valid
 			if (Utils.validIP(ip.getText()) && Utils.validPORT(port.getText())) {
+				
 				System.out.println("Connecting to: " + ip.getText() + ", Port: " + port.getText());
+				
 				new Client(ip.getText(),port.getText());
-				// MANAGE SERVER HOSTING
 
 				window.close();
 			} else {

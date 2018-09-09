@@ -3,6 +3,7 @@ package application;
 import application.subsystem.Game.Board;
 import application.subsystem.Game.PlayerManager;
 import application.subsystem.Networking.ConnectionBox;
+import application.subsystem.Networking.Server;
 import application.subsystem.Pieces.BasicPiece;
 import application.subsystem.Utils.AreYouSureAlertBox;
 import application.subsystem.Utils.BasicAlertBox;
@@ -130,7 +131,7 @@ public class Controller {
 		MenuItem host = multiplayer.getItems().get(0);
 		host.setOnAction(e->{
 			//handle the hosting (Server)
-			
+			new Server(1111);
 			
 		});
 		MenuItem connect = multiplayer.getItems().get(1);
