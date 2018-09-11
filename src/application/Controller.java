@@ -3,6 +3,7 @@ package application;
 import application.subsystem.Game.Board;
 import application.subsystem.Game.PlayerManager;
 import application.subsystem.Networking.ConnectionBox;
+import application.subsystem.Networking.PortBox;
 import application.subsystem.Networking.Server;
 import application.subsystem.Pieces.BasicPiece;
 import application.subsystem.Utils.AreYouSureAlertBox;
@@ -24,8 +25,7 @@ public class Controller {
 	static Board board;
 	static GridPane gridPane;
 	static Label tempLabel;
-	
-	
+	public static Server server;
 
 	public Controller() {
 
@@ -73,11 +73,9 @@ public class Controller {
 
 		// retrieve the moving piece
 		BasicPiece moving = Board.squares[sourceColID][sourceRowID].piece;
-		//moving.move(Board.squares[targetColID][targetRowID]);
-		
+		// moving.move(Board.squares[targetColID][targetRowID]);
+
 		moving.player.move(moving, Board.squares[targetColID][targetRowID]);
-		
-		
 
 		e.setDropCompleted(true);
 		e.consume();
@@ -125,13 +123,20 @@ public class Controller {
 		MenuItem close = game.getItems().get(1);
 		close.setOnAction(e -> {
 			// YOU MIGHT WANNA DO SOME SAVING BEFORE QUITTING :)
-			new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, ()->Platform.exit());
+			new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, ()->{
+				if (Controller.server!=null) {
+					Controller.server.socketClose();
+					System.out.println("Socket chiuso");
+					
+				}
+				Platform.exit();
+				});
 		});
 		
 		MenuItem host = multiplayer.getItems().get(0);
 		host.setOnAction(e->{
 			//handle the hosting (Server)
-			new Server(1111);
+			new PortBox ("Server", 250, 250);
 			
 		});
 		MenuItem connect = multiplayer.getItems().get(1);

@@ -34,7 +34,15 @@ public class Main extends Application {
 			
 			primaryStage.setOnCloseRequest(e->{
 				e.consume();
-				new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, ()->Platform.exit());
+				new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, ()->{
+					if (Controller.server!=null) {
+						Controller.server.socketClose();
+						System.out.println("Socket chiuso");
+						
+					}
+					Platform.exit();
+						
+					});
 			});
 			 
 			//THIS IS SORT OF A GAMELOOP IN CASE WE NEED IT
