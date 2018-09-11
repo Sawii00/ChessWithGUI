@@ -136,13 +136,13 @@ public class Controller {
 		MenuItem host = multiplayer.getItems().get(0);
 		host.setOnAction(e->{
 			//handle the hosting (Server)
-			new PortBox ("Server", 250, 250);
+			new PortBox ("Host", 250, 250);
 			
 		});
 		MenuItem connect = multiplayer.getItems().get(1);
 		connect.setOnAction(e->{
 			//handle the client
-			new ConnectionBox("Host", 250, 250);
+			new ConnectionBox("Connect", 250, 250);
 		});
 		
 
