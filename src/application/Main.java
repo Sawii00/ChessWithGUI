@@ -11,7 +11,10 @@ import javafx.scene.Scene;
 
 /*@TODO WHERE THERE'S STUFF TO DO
  * 
- * 
+ * PROBLEM:
+ * 	WHEN YOU MOVE A PIECE AFTER HITTING HOST BUT BEFORE HAVING A CLIENT CONNECTED, IT DOES NOT MOVE
+ * WHEN A CLIENT CONNECTS AND YOU MOVE A DIFFERENT PIECE, THE PREVIOUS PIECE MOVES WHERE YOU TOLD HIM TO
+ * #NEVERLUCKY
  * 
  * 
  * 
@@ -37,13 +40,13 @@ public class Main extends Application {
 				new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, ()->{
 					if (Controller.server!=null) {
 						Controller.server.socketClose();
+						
 						System.out.println("Socket chiuso");
 
 					}
-					Controller.exit = true;
 
 					Platform.exit();
-						
+					System.exit(0);
 					});
 			});
 			 

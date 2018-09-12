@@ -49,11 +49,10 @@ public class Server implements Runnable {
 			dout = new DataOutputStream(socket.getOutputStream());
 			//
 			while (true) {
+				
 				String response = din.readUTF();
 				System.out.println(response);
-				if (Controller.exit) {
-					t.interrupt();
-				}
+				
 				
 			}
 			
@@ -65,6 +64,7 @@ public class Server implements Runnable {
 
 	}
 
+	
 	public void pieceMoved(String message) {
 		System.out.println(message);
 

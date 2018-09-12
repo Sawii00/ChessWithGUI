@@ -45,11 +45,10 @@ public class Client implements Runnable {
 			din = new DataInputStream(socket.getInputStream());
 
 			while (true) {
+
 				String response = din.readUTF();
 				System.out.println(response);
-				if (Controller.exit) {
-					t.interrupt();
-				}
+
 			}
 
 		} catch (IOException e) {
@@ -58,6 +57,7 @@ public class Client implements Runnable {
 
 	}
 
+	
 	public void pieceMoved(String message) {
 
 		System.out.println(message);

@@ -28,7 +28,6 @@ public class Controller {
 	static Label tempLabel;
 	public static Server server;
 	public static Client client;
-	public static boolean exit = false;
 
 	public Controller() {
 
@@ -134,10 +133,13 @@ public class Controller {
 			new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, ()->{
 				if (Controller.server!=null) {
 					Controller.server.socketClose();
-					System.out.println("Socket chiuso");
 					
+					System.out.println("Socket chiuso");
+
 				}
+
 				Platform.exit();
+				System.exit(0);
 				});
 		});
 		
