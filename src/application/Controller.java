@@ -2,6 +2,7 @@ package application;
 
 import application.subsystem.Game.Board;
 import application.subsystem.Game.PlayerManager;
+import application.subsystem.Networking.Client;
 import application.subsystem.Networking.ConnectionBox;
 import application.subsystem.Networking.PortBox;
 import application.subsystem.Networking.Server;
@@ -26,6 +27,8 @@ public class Controller {
 	static GridPane gridPane;
 	static Label tempLabel;
 	public static Server server;
+	public static Client client;
+	public static boolean exit = false;
 
 	public Controller() {
 
@@ -80,6 +83,11 @@ public class Controller {
 		e.setDropCompleted(true);
 		e.consume();
 		syncArrayGrid();
+		
+		
+		
+		
+		
 	}
 
 	public static void syncArrayGrid() {

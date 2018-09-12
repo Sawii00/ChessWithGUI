@@ -8,14 +8,10 @@ public class PlayerManager {
 	public static Player player2;
 
 	public PlayerManager() {
-		player1 = new Player("Player 1", Color.RED);
-		player2 = new Player("Player 2", Color.BLUE);
+		player1 = new Player("Player 1", Color.BLACK);
+		player2 = new Player("Player 2", Color.WHITE);
 
-		if (Math.random() < 0.5d) {
-			player1.myTurn = true;
-		} else {
-			player2.myTurn = true;
-		}
+		player2.myTurn = true;
 
 	}
 

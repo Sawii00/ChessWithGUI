@@ -38,8 +38,10 @@ public class Main extends Application {
 					if (Controller.server!=null) {
 						Controller.server.socketClose();
 						System.out.println("Socket chiuso");
-						
+
 					}
+					Controller.exit = true;
+
 					Platform.exit();
 						
 					});

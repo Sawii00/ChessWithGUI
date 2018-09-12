@@ -7,17 +7,23 @@ import java.net.Inet4Address;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import application.Controller;
+import application.subsystem.Game.PlayerManager;
+
 public class Client implements Runnable {
 
 	Socket socket;
 	Inet4Address ip;
 	int port;
 	Thread t;
+	DataInputStream din;
+	DataOutputStream dout;
 
 	public Client(String ip, String port) {
 		try {
 			this.port = Integer.parseInt(port);
 			this.ip = (Inet4Address) Inet4Address.getByName(ip);
+			PlayerManager.player2.virtual = true;
 			if (t == null) {
 				t = new Thread(this, "Server");
 				t.start();
@@ -35,22 +41,32 @@ public class Client implements Runnable {
 
 			socket = new Socket(this.ip, this.port);
 			System.out.println("Socket creato");
-			DataOutputStream dout = new DataOutputStream(socket.getOutputStream());
-			DataInputStream din = new DataInputStream(socket.getInputStream());
+			dout = new DataOutputStream(socket.getOutputStream());
+			din = new DataInputStream(socket.getInputStream());
 
-			dout.writeUTF("ClientTest");
-			dout.flush();
-			//dout.close();
-
-			Thread.sleep(1000);
-			
-			String message = (String) din.readUTF();
-
-			if (message != null) {
-				System.out.println(message);
+			while (true) {
+				String response = din.readUTF();
+				System.out.println(response);
+				if (Controller.exit) {
+					t.interrupt();
+				}
 			}
 
-		} catch (IOException | InterruptedException e) {
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void pieceMoved(String message) {
+
+		System.out.println(message);
+
+		try {
+			dout.writeUTF(message);
+			dout.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

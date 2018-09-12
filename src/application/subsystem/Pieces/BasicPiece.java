@@ -2,6 +2,7 @@ package application.subsystem.Pieces;
 
 import java.util.ArrayList;
 
+import application.Controller;
 import application.subsystem.Game.Board;
 import application.subsystem.Game.Player;
 import application.subsystem.Game.PlayerManager;
@@ -88,6 +89,8 @@ public abstract class BasicPiece {
 	public void move(Square destination) {
 		if (calcDestination(destination)) {
 			PlayerManager.successfulMove();
+			String message = position.id_x + "," + position.id_y + "-" + destination.position.id_x + ","
+					+ destination.position.id_y;
 			for (Square i : path(destination)) {
 				System.out.print(i.position.id_x);
 				System.out.print(", ");
@@ -99,7 +102,19 @@ public abstract class BasicPiece {
 				if (destination.piece != null) {
 					this.eat(destination.piece);
 				}
+
 			}
+
+			if (Controller.client != null) {
+				// client method
+				Controller.client.pieceMoved(message);
+
+			}
+			if (Controller.server != null) {
+				// server method
+				Controller.server.pieceMoved(message);
+			}
+
 		} else {
 			System.out.println("Rotto");
 		}

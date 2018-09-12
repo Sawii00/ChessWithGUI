@@ -1,6 +1,7 @@
 package application.subsystem.Networking;
 
 import application.subsystem.Utils.Utils;
+import application.Controller;
 import application.subsystem.Utils.BasicAlertBox;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -51,7 +52,7 @@ public class ConnectionBox {
 				
 				System.out.println("Connecting to: " + ip.getText() + ", Port: " + port.getText());
 				
-				new Client(ip.getText(),port.getText());
+				Controller.client = new Client(ip.getText(),port.getText());
 
 				window.close();
 			} else {

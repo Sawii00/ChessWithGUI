@@ -72,5 +72,15 @@ public class Utils {
 		return byte_array;
 
 	}
+	
+	public static void decodeString(String string) {
+		String[] array = string.split(",");
+		
+		
+		
+		
+		
+		
+	}
 
 }
