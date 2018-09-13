@@ -10,6 +10,7 @@ import application.subsystem.Pieces.BasicPiece;
 import application.subsystem.Utils.AreYouSureAlertBox;
 import application.subsystem.Utils.BasicAlertBox;
 import javafx.application.Platform;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -28,6 +29,9 @@ public class Controller {
 	static Label tempLabel;
 	public static Server server;
 	public static Client client;
+	
+	public static boolean isHosting = false;
+	public static boolean isConnected = false;
 
 	public Controller() {
 
@@ -82,11 +86,7 @@ public class Controller {
 		e.setDropCompleted(true);
 		e.consume();
 		syncArrayGrid();
-		
-		
-		
-		
-		
+
 	}
 
 	public static void syncArrayGrid() {
@@ -122,39 +122,69 @@ public class Controller {
 
 		// @TODO we have to set the reset button
 		MenuItem reset = game.getItems().get(0);
-		reset.setOnAction(e->{
+		reset.setOnAction(e -> {
 			initialize();
-			
+
 		});
 
 		MenuItem close = game.getItems().get(1);
 		close.setOnAction(e -> {
 			// YOU MIGHT WANNA DO SOME SAVING BEFORE QUITTING :)
-			new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, ()->{
-				if (Controller.server!=null) {
-					Controller.server.socketClose();
-					
+			new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, () -> {
+				if (server != null) {
+					server.socketClose();
+
 					System.out.println("Socket chiuso");
 
 				}
 
 				Platform.exit();
 				System.exit(0);
-				});
+			});
 		});
-		
-		MenuItem host = multiplayer.getItems().get(0);
-		host.setOnAction(e->{
-			//handle the hosting (Server)
-			new PortBox ("Host", 250, 250);
-			
+
+		CheckMenuItem host = (CheckMenuItem) multiplayer.getItems().get(0);
+		CheckMenuItem connect = (CheckMenuItem) multiplayer.getItems().get(1);
+
+		host.setOnAction(e -> {
+			if (connect.isSelected()) {
+				host.setSelected(false);
+				new BasicAlertBox("Error", "You are connected, cannot host", 250, 100);
+			} else {
+				if (isHosting) {
+					server.socketClose();
+					server = null;
+					isHosting = false;
+					System.out.println("DisconnectedHosting");
+				} else {
+					new PortBox("Host", 250, 250);
+					isHosting = true;
+
+				}
+
+			}
+
 		});
-		MenuItem connect = multiplayer.getItems().get(1);
-		connect.setOnAction(e->{
-			//handle the client
-			new ConnectionBox("Connect", 250, 250);
+		connect.setOnAction(e -> {
+			if (host.isSelected()) {
+				connect.setSelected(false);
+				new BasicAlertBox("Error", "You are hosting, cannot connect", 250, 100);
+			} else {
+				if (isConnected) {
+					if (client.socket != null) {
+						client.socketClose();
+					}
+					
+					client = null;
+					isConnected = false;
+					System.out.println("DisconnectedTheClient");
+				} else {
+					new ConnectionBox("Connect", 250, 250);
+					isConnected = true;
+				}
+
+			}
 		});
-		
 
 		MenuItem about = help.getItems().get(0);
 		about.setOnAction(e -> {

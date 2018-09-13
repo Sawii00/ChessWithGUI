@@ -3,16 +3,18 @@ package application.subsystem.Networking;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.Inet4Address;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import application.Controller;
 import application.subsystem.Game.PlayerManager;
+import application.subsystem.Utils.BasicAlertBox;
+import application.subsystem.Utils.Utils;
 
 public class Client implements Runnable {
 
-	Socket socket;
+	public Socket socket;
 	Inet4Address ip;
 	int port;
 	Thread t;
@@ -34,6 +36,14 @@ public class Client implements Runnable {
 		}
 
 	}
+	public void socketClose() {
+		try {
+			socket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void run() {
@@ -52,10 +62,11 @@ public class Client implements Runnable {
 			}
 
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 
 	}
+	
+	
 
 	
 	public void pieceMoved(String message) {

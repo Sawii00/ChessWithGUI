@@ -41,7 +41,7 @@ public class Server implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("Pippo");
+		System.out.println("Server Inizializzato");
 		try {
 			server = new ServerSocket(port);
 			socket = server.accept();
