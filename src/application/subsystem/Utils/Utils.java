@@ -1,5 +1,6 @@
 package application.subsystem.Utils;
 
+import application.subsystem.Game.Board;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
@@ -72,12 +73,23 @@ public class Utils {
 		return byte_array;
 
 	}
-	
-	public static void decodeString(String string) {
-		String[] array = string.split(",");
-		
-		
+
+	public static boolean decodeString(String string) {
+		String[] positions = string.split("-");
+		String[] pos = positions[0].split(",");
+		String[] des = positions[1].split(",");
+
+		// devil's function
+		try {
+			Board.squares[Integer.parseInt(pos[0])][Integer.parseInt(pos[1])].piece
+					.move(Board.squares[Integer.parseInt(des[0])][Integer.parseInt(des[1])]);
+			return true;
+		} catch (java.lang.NullPointerException | NumberFormatException e) {
+			return false;
+		}
+
 	}
+
 	
 
 }

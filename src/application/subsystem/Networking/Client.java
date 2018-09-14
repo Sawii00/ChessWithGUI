@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import application.Controller;
+import application.subsystem.Utils.Utils;
+import javafx.application.Platform;
 
 public class Client implements Runnable {
 
@@ -33,6 +35,7 @@ public class Client implements Runnable {
 		}
 
 	}
+
 	public void socketClose() {
 		try {
 			socket.close();
@@ -55,6 +58,11 @@ public class Client implements Runnable {
 			while (true) {
 
 				String response = din.readUTF();
+				if (Utils.decodeString(response)) {
+					Platform.runLater(() -> {
+						Controller.syncArrayGrid();
+					});
+				}
 				System.out.println(response);
 
 			}
@@ -63,10 +71,7 @@ public class Client implements Runnable {
 		}
 
 	}
-	
-	
 
-	
 	public void pieceMoved(String message) {
 
 		System.out.println(message);

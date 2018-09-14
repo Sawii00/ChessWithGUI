@@ -7,6 +7,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import application.Controller;
+import application.subsystem.Utils.Utils;
+import javafx.application.Platform;
 
 public class Server implements Runnable {
 
@@ -50,6 +52,13 @@ public class Server implements Runnable {
 			while (true) {
 
 				String response = din.readUTF();
+				if (Utils.decodeString(response)) {
+					Platform.runLater( ()-> {
+			            	Controller.syncArrayGrid();
+			        });
+					
+					
+				}
 				System.out.println(response);
 
 			}
