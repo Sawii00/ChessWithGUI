@@ -2,6 +2,7 @@ package application.subsystem.Pieces;
 
 import java.util.ArrayList;
 
+import application.Controller;
 import application.subsystem.Game.Board;
 import application.subsystem.Game.Player;
 import application.subsystem.Game.PlayerManager;
@@ -28,7 +29,7 @@ public class Pawn extends BasicPiece {
 		
 		//Need divide as upper player can only go downwards and bottom player can only go upwards
 
-		if (player == PlayerManager.player1) {
+		if (player == Controller.pm.player1) {
 			if (isFirstMove && position.id_x == destination.position.id_x && position.id_y != destination.position.id_y
 					&& destination.position.id_y - position.id_y <= 2) {
 				isFirstMove = false;

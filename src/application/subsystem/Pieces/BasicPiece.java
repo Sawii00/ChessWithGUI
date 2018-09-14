@@ -88,7 +88,7 @@ public abstract class BasicPiece {
 
 	public void move(Square destination) {
 		if (calcDestination(destination)) {
-			PlayerManager.successfulMove();
+			Controller.pm.successfulMove();
 			String message = position.id_x + "," + position.id_y + "-" + destination.position.id_x + ","
 					+ destination.position.id_y;
 			for (Square i : path(destination)) {

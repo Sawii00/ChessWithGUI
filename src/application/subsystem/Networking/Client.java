@@ -3,14 +3,11 @@ package application.subsystem.Networking;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ConnectException;
 import java.net.Inet4Address;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import application.subsystem.Game.PlayerManager;
-import application.subsystem.Utils.BasicAlertBox;
-import application.subsystem.Utils.Utils;
+import application.Controller;
 
 public class Client implements Runnable {
 
@@ -25,7 +22,7 @@ public class Client implements Runnable {
 		try {
 			this.port = Integer.parseInt(port);
 			this.ip = (Inet4Address) Inet4Address.getByName(ip);
-			PlayerManager.player2.virtual = true;
+			Controller.pm.player2.virtual = true;
 			if (t == null) {
 				t = new Thread(this, "Server");
 				t.start();
@@ -51,6 +48,7 @@ public class Client implements Runnable {
 
 			socket = new Socket(this.ip, this.port);
 			System.out.println("Socket creato");
+			System.out.println("Client connected");
 			dout = new DataOutputStream(socket.getOutputStream());
 			din = new DataInputStream(socket.getInputStream());
 

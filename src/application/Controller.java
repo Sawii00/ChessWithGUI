@@ -29,7 +29,8 @@ public class Controller {
 	static Label tempLabel;
 	public static Server server;
 	public static Client client;
-	
+	public static PlayerManager pm;
+
 	public static boolean isHosting = false;
 	public static boolean isConnected = false;
 
@@ -38,7 +39,7 @@ public class Controller {
 	}
 
 	public static void initialize() {
-		new PlayerManager();
+		pm = new PlayerManager();
 		board = new Board(8, 8);
 		gridPane = (GridPane) Main.mainScene.lookup("#gridPane");
 		syncArrayGrid();
@@ -122,12 +123,19 @@ public class Controller {
 
 		// @TODO we have to set the reset button
 		MenuItem reset = game.getItems().get(0);
-		reset.setOnAction(e -> {
-			initialize();
+		MenuItem close = game.getItems().get(1);
+		CheckMenuItem host = (CheckMenuItem) multiplayer.getItems().get(0);
+		CheckMenuItem connect = (CheckMenuItem) multiplayer.getItems().get(1);
+		MenuItem about = help.getItems().get(0);
 
+		reset.setOnAction(e -> {
+			if (host.isSelected() || connect.isSelected()) {
+				new BasicAlertBox("Error", "Cannot reset a multiplayer game", 250, 100);
+			} else {
+				initialize();
+			}
 		});
 
-		MenuItem close = game.getItems().get(1);
 		close.setOnAction(e -> {
 			// YOU MIGHT WANNA DO SOME SAVING BEFORE QUITTING :)
 			new AreYouSureAlertBox("Confirmation", "Are you sure you want to close the game?", 300, 200, () -> {
@@ -142,9 +150,6 @@ public class Controller {
 				System.exit(0);
 			});
 		});
-
-		CheckMenuItem host = (CheckMenuItem) multiplayer.getItems().get(0);
-		CheckMenuItem connect = (CheckMenuItem) multiplayer.getItems().get(1);
 
 		host.setOnAction(e -> {
 			if (connect.isSelected()) {
@@ -174,7 +179,7 @@ public class Controller {
 					if (client.socket != null) {
 						client.socketClose();
 					}
-					
+
 					client = null;
 					isConnected = false;
 					System.out.println("DisconnectedTheClient");
@@ -186,7 +191,6 @@ public class Controller {
 			}
 		});
 
-		MenuItem about = help.getItems().get(0);
 		about.setOnAction(e -> {
 			new BasicAlertBox("About", "Created By Sawii00 and Felucco", 200, 200);
 		});

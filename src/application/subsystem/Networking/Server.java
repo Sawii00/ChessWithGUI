@@ -7,7 +7,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import application.Controller;
-import application.subsystem.Game.PlayerManager;
 
 public class Server implements Runnable {
 
@@ -20,7 +19,7 @@ public class Server implements Runnable {
 
 	public Server(int port) {
 		this.port = port;
-		PlayerManager.player1.virtual = true;
+		Controller.pm.player1.virtual = true;
 		if (t == null) {
 			t = new Thread(this, "Server");
 			t.start();
@@ -41,7 +40,7 @@ public class Server implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("Server Inizializzato");
+		System.out.println("Server initialized");
 		try {
 			server = new ServerSocket(port);
 			socket = server.accept();
@@ -49,22 +48,17 @@ public class Server implements Runnable {
 			dout = new DataOutputStream(socket.getOutputStream());
 			//
 			while (true) {
-				
+
 				String response = din.readUTF();
 				System.out.println(response);
-				
-				
+
 			}
-			
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}
 
-	
 	public void pieceMoved(String message) {
 		System.out.println(message);
 
@@ -72,7 +66,6 @@ public class Server implements Runnable {
 			dout.writeUTF(message);
 			dout.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
