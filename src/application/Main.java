@@ -16,7 +16,11 @@ import javafx.scene.Scene;
  * WHEN A CLIENT CONNECTS AND YOU MOVE A DIFFERENT PIECE, THE PREVIOUS PIECE MOVES WHERE YOU TOLD HIM TO
  * #NEVERLUCKY
  * 
+ * Sync the table when reconnecting
+ * Server needs to send a message stating the turn
  * 
+ * 
+ * When the client disconnects, it sends a connection closed message to the server
  * 
  * */
 

@@ -22,6 +22,9 @@ public class Server implements Runnable {
 	public Server(int port) {
 		this.port = port;
 		Controller.pm.player1.virtual = true;
+		Controller.pm.player2.virtual = false;
+		Controller.pm.player1.myTurn = false;
+		Controller.pm.player2.myTurn = true;
 		if (t == null) {
 			t = new Thread(this, "Server");
 			t.start();
@@ -33,6 +36,9 @@ public class Server implements Runnable {
 
 		try {
 			server.close();
+			din.close();
+			dout.close();
+			t.interrupt();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

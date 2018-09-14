@@ -28,6 +28,19 @@ public class King extends BasicPiece {
 			return false;
 		}
 	}
+	
+	
+	public boolean castling(Square destination) {
+		boolean result = false;
+		//@toDo
+		
+		
+		
+		return result;
+		
+		
+		
+	}
 
 
 	@Override
