@@ -25,7 +25,7 @@ public class Client implements Runnable {
 			this.port = Integer.parseInt(port);
 			this.ip = (Inet4Address) Inet4Address.getByName(ip);
 			Controller.pm.player2.virtual = true;
-			
+
 			if (t == null) {
 				t = new Thread(this, "Server");
 				t.start();
@@ -39,12 +39,13 @@ public class Client implements Runnable {
 
 	public void socketClose() {
 		try {
+			dout.writeUTF("Closing");
+			dout.flush();
 			socket.close();
 			din.close();
 			dout.close();
 			t.interrupt();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

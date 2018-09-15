@@ -20,8 +20,8 @@ import javafx.scene.Scene;
  * Server needs to send a message stating the turn
  * 
  * 
- * When the client disconnects, it sends a connection closed message to the server
  * 
+ * Bug: when hitting host or connect and then closing the pop window
  * */
 
 

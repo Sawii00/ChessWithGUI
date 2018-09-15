@@ -18,6 +18,7 @@ public class Server implements Runnable {
 	Thread t;
 	DataInputStream din;
 	DataOutputStream dout;
+	boolean hasClientConnected = false;
 
 	public Server(int port) {
 		this.port = port;
@@ -51,25 +52,53 @@ public class Server implements Runnable {
 		System.out.println("Server initialized");
 		try {
 			server = new ServerSocket(port);
-			socket = server.accept();
-			din = new DataInputStream(socket.getInputStream());
-			dout = new DataOutputStream(socket.getOutputStream());
-			//
+
 			while (true) {
 
+				if (hasClientConnected == false) {
+					socket = server.accept();
+					hasClientConnected = true;
+					// initialize method (sync and modify turns)
+					initialize();
+				}
 				String response = din.readUTF();
+
 				if (Utils.decodeString(response)) {
-					Platform.runLater( ()-> {
-			            	Controller.syncArrayGrid();
-			        });
-					
-					
+					Platform.runLater(() -> {
+						Controller.syncArrayGrid();
+					});
+
+				}
+				if (response.equals("Closing")) {
+					hasClientConnected = false;
+
 				}
 				System.out.println(response);
-
 			}
 
 		} catch (IOException e) {
+		}
+
+	}
+
+	private void initialize() {
+		System.out.println("Initializing");
+		try {
+			din = new DataInputStream(socket.getInputStream());
+			dout = new DataOutputStream(socket.getOutputStream());
+			
+			//send the board configuration
+			
+			
+			
+			//send the turn 
+			
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

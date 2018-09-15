@@ -42,26 +42,26 @@ public abstract class BasicPiece {
 
 						if (this.player == i.piece.player) {
 
-							System.out.print("Incontrato pezzo alleato su ");
-							System.out.print(i.position.id_x);
-							System.out.print(", ");
-							System.out.println(i.position.id_y);
+//							System.out.print("Incontrato pezzo alleato su ");
+//							System.out.print(i.position.id_x);
+//							System.out.print(", ");
+//							System.out.println(i.position.id_y);
 
 							return false;
 
 						} else {
 
-							System.out.print("Incontrato pezzo nemico su ");
-							System.out.print(i.position.id_x);
-							System.out.print(", ");
-							System.out.println(i.position.id_y);
+//							System.out.print("Incontrato pezzo nemico su ");
+//							System.out.print(i.position.id_x);
+//							System.out.print(", ");
+//							System.out.println(i.position.id_y);
 
 							if (i == destination) {
-								System.out.println("Destinazione-->Pezzo mangiato");
+//								System.out.println("Destinazione-->Pezzo mangiato");
 								return true;
 							} else {
 
-								System.out.println("Non destinazione, mossa non valida");
+//								System.out.println("Non destinazione, mossa non valida");
 								return false;
 
 							}
@@ -92,13 +92,13 @@ public abstract class BasicPiece {
 			String message = position.id_x + "," + position.id_y + "-" + destination.position.id_x + ","
 					+ destination.position.id_y;
 			for (Square i : path(destination)) {
-				System.out.print(i.position.id_x);
-				System.out.print(", ");
-				System.out.println(i.position.id_y);
+//				System.out.print(i.position.id_x);
+//				System.out.print(", ");
+//				System.out.println(i.position.id_y);
 				Board.squares[position.id_x][position.id_y].piece = null;
 				Board.squares[destination.position.id_x][destination.position.id_y].piece = this;
 				position.syncPos(destination);
-				System.out.println("mosso");
+//				System.out.println("mosso");
 				if (destination.piece != null) {
 					this.eat(destination.piece);
 				}
@@ -116,7 +116,7 @@ public abstract class BasicPiece {
 			}
 
 		} else {
-			System.out.println("Rotto");
+//			System.out.println("Rotto");
 		}
 	}
 
