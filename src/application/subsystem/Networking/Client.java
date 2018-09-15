@@ -39,6 +39,8 @@ public class Client implements Runnable {
 
 	public void socketClose() {
 		try {
+			dout.writeUTF("Closing");
+			dout.flush();
 			socket.close();
 			din.close();
 			dout.close();
@@ -60,7 +62,7 @@ public class Client implements Runnable {
 			din = new DataInputStream(socket.getInputStream());
 
 			while (true) {
-
+				
 				String response = din.readUTF();
 				if (Utils.decodeString(response)) {
 					Platform.runLater(() -> {
