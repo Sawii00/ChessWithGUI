@@ -52,19 +52,17 @@ public class Server implements Runnable {
 		System.out.println("Server initialized");
 		try {
 			server = new ServerSocket(port);
-			
-			
+
 			while (true) {
-				
+
 				if (hasClientConnected == false) {
 					socket = server.accept();
 					hasClientConnected = true;
-					//initialize method (sync and modify turns)
+					// initialize method (sync and modify turns)
 					initialize();
 				}
 				String response = din.readUTF();
 
-				
 				if (Utils.decodeString(response)) {
 					Platform.runLater(() -> {
 						Controller.syncArrayGrid();
@@ -82,18 +80,27 @@ public class Server implements Runnable {
 		}
 
 	}
-	
+
 	private void initialize() {
 		System.out.println("Initializing");
 		try {
 			din = new DataInputStream(socket.getInputStream());
 			dout = new DataOutputStream(socket.getOutputStream());
+			
+			//send the board configuration
+			
+			
+			
+			//send the turn 
+			
+			
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 	public void pieceMoved(String message) {
