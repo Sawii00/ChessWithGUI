@@ -145,6 +145,11 @@ public class Controller {
 					System.out.println("Socket chiuso");
 
 				}
+				else if (Controller.client!=null) {
+					Controller.client.socketClose();
+					System.out.println("Socket chiuso");
+					
+				}
 
 				Platform.exit();
 				System.exit(0);

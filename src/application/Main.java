@@ -1,7 +1,6 @@
 package application;
-	
+
 import application.subsystem.Utils.AreYouSureAlertBox;
-//import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +17,7 @@ import javafx.scene.Scene;
  * 
  * Sync the table when reconnecting
  * Server needs to send a message stating the turn
+ * Create primary file for board status
  * 
  * 
  * 
@@ -47,6 +47,11 @@ public class Main extends Application {
 						
 						System.out.println("Socket chiuso");
 
+					}
+					else if (Controller.client!=null) {
+						Controller.client.socketClose();
+						System.out.println("Socket chiuso");
+						
 					}
 
 					Platform.exit();

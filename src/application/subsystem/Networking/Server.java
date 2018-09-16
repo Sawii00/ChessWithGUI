@@ -54,6 +54,8 @@ public class Server implements Runnable {
 			server = new ServerSocket(port);
 
 			while (true) {
+				
+				System.out.println("While restart");
 
 				if (hasClientConnected == false) {
 					socket = server.accept();
@@ -74,6 +76,8 @@ public class Server implements Runnable {
 
 				}
 				System.out.println(response);
+				
+				
 			}
 
 		} catch (IOException e) {
