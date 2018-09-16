@@ -54,26 +54,38 @@ public class Client implements Runnable {
 	public void run() {
 		try {
 
-			socket = new Socket(this.ip, this.port);
-			System.out.println("Socket creato");
-			System.out.println("Client connected");
-			dout = new DataOutputStream(socket.getOutputStream());
-			din = new DataInputStream(socket.getInputStream());
+			setupConnection();
 
 			while (true) {
-
 				String response = din.readUTF();
 				if (Utils.decodeString(response)) {
 					Platform.runLater(() -> {
 						Controller.syncArrayGrid();
 					});
+				}else if(response.equals("Client")) {
+					Controller.pm.player1.myTurn = true;
+				}else if (response.equals("Server")) {
+					Controller.pm.player1.myTurn = false;				
 				}
-				System.out.println(response);
 				
-
+				System.out.println(response);
 			}
 
 		} catch (IOException e) {
+		}
+
+	}
+
+	private void setupConnection() {
+
+		try {
+			socket = new Socket(this.ip, this.port);
+			System.out.println("Socket creato");
+			System.out.println("Client connected");
+			dout = new DataOutputStream(socket.getOutputStream());
+			din = new DataInputStream(socket.getInputStream());
+		} catch (IOException e) {
+
 		}
 
 	}
