@@ -40,8 +40,12 @@ public class Server implements Runnable {
 			din.close();
 			dout.close();
 			t.interrupt();
-			if(Controller.isConnected) {Controller.isConnected=false;}
-			if(Controller.isHosting) {Controller.isHosting=false;}
+			if (Controller.isConnected) {
+				Controller.isConnected = false;
+			}
+			if (Controller.isHosting) {
+				Controller.isHosting = false;
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,12 +100,11 @@ public class Server implements Runnable {
 			if (Controller.pm.player2.myTurn) {
 				dout.writeUTF("Server");
 
-			}else {
+			} else {
 				dout.writeUTF("Client");
 			}
-			
+
 			Thread.sleep(500);
-			
 
 			// send the turn
 

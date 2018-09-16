@@ -45,8 +45,12 @@ public class Client implements Runnable {
 			din.close();
 			dout.close();
 			t.interrupt();
-			if(Controller.isConnected) {Controller.isConnected=false;}
-			if(Controller.isHosting) {Controller.isHosting=false;}
+			if (Controller.isConnected) {
+				Controller.isConnected = false;
+			}
+			if (Controller.isHosting) {
+				Controller.isHosting = false;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -64,12 +68,12 @@ public class Client implements Runnable {
 					Platform.runLater(() -> {
 						Controller.syncArrayGrid();
 					});
-				}else if(response.equals("Client")) {
+				} else if (response.equals("Client")) {
 					Controller.pm.player1.myTurn = true;
-				}else if (response.equals("Server")) {
-					Controller.pm.player1.myTurn = false;				
+				} else if (response.equals("Server")) {
+					Controller.pm.player1.myTurn = false;
 				}
-				
+
 				System.out.println(response);
 			}
 
