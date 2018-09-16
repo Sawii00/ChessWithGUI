@@ -2,6 +2,7 @@ package application;
 
 import application.subsystem.Game.Board;
 import application.subsystem.Game.PlayerManager;
+import application.subsystem.IO.ImportBox;
 import application.subsystem.Networking.Client;
 import application.subsystem.Networking.ConnectionBox;
 import application.subsystem.Networking.PortBox;
@@ -122,11 +123,21 @@ public class Controller {
 		Menu help = menu.getMenus().get(2);
 
 		// @TODO we have to set the reset button
-		MenuItem reset = game.getItems().get(0);
-		MenuItem close = game.getItems().get(1);
+		MenuItem importGame = game.getItems().get(0);
+		MenuItem reset = game.getItems().get(1);
+		MenuItem close = game.getItems().get(2);
 		CheckMenuItem host = (CheckMenuItem) multiplayer.getItems().get(0);
 		CheckMenuItem connect = (CheckMenuItem) multiplayer.getItems().get(1);
 		MenuItem about = help.getItems().get(0);
+		
+		
+		importGame.setOnAction(e -> {
+			
+			new ImportBox("Import", 250, 250);
+			
+			
+		});
+		
 
 		reset.setOnAction(e -> {
 			if (host.isSelected() || connect.isSelected()) {
