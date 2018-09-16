@@ -32,6 +32,10 @@ public class File {
 		System.out.println("File Created");
 		
 	}
+	public String getName() {
+		return name;
+		
+	}
 	
 	
 

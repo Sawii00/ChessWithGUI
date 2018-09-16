@@ -1,5 +1,9 @@
 package application;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import application.subsystem.Game.Board;
 import application.subsystem.Game.PlayerManager;
 import application.subsystem.IO.File;
@@ -144,11 +148,10 @@ public class Controller {
 
 					System.out.println("Socket chiuso");
 
-				}
-				else if (Controller.client!=null) {
+				} else if (Controller.client != null) {
 					Controller.client.socketClose();
 					System.out.println("Socket chiuso");
-					
+
 				}
 
 				Platform.exit();
@@ -168,8 +171,9 @@ public class Controller {
 					System.out.println("DisconnectedHosting");
 				} else {
 					new PortBox("Host", 250, 250);
-					if (!isHosting) {host.setSelected(false);}
-					
+					if (!isHosting) {
+						host.setSelected(false);
+					}
 
 				}
 
@@ -191,9 +195,10 @@ public class Controller {
 					System.out.println("DisconnectedTheClient");
 				} else {
 					new ConnectionBox("Connect", 250, 250);
-					if (!isConnected) {connect.setSelected(false);}
-					
-						
+					if (!isConnected) {
+						connect.setSelected(false);
+					}
+
 				}
 
 			}
