@@ -45,6 +45,8 @@ public class Client implements Runnable {
 			din.close();
 			dout.close();
 			t.interrupt();
+			if(Controller.isConnected) {Controller.isConnected=false;}
+			if(Controller.isHosting) {Controller.isHosting=false;}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
