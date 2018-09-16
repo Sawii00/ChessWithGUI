@@ -54,7 +54,7 @@ public class Server implements Runnable {
 			server = new ServerSocket(port);
 
 			while (true) {
-				
+
 				System.out.println("While restart");
 
 				if (hasClientConnected == false) {
@@ -76,8 +76,7 @@ public class Server implements Runnable {
 
 				}
 				System.out.println(response);
-				
-				
+
 			}
 
 		} catch (IOException e) {
@@ -90,17 +89,21 @@ public class Server implements Runnable {
 		try {
 			din = new DataInputStream(socket.getInputStream());
 			dout = new DataOutputStream(socket.getOutputStream());
+
+			// send the board configuration
+			if (Controller.pm.player2.myTurn) {
+				dout.writeUTF("Server");
+
+			}else {
+				dout.writeUTF("Client");
+			}
 			
-			//send the board configuration
+			Thread.sleep(500);
 			
-			
-			
-			//send the turn 
-			
-			
-			
-			
-		} catch (IOException e) {
+
+			// send the turn
+
+		} catch (IOException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
