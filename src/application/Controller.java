@@ -168,7 +168,8 @@ public class Controller {
 					System.out.println("DisconnectedHosting");
 				} else {
 					new PortBox("Host", 250, 250);
-					isHosting = true;
+					if (!isHosting) {host.setSelected(false);}
+					
 
 				}
 
@@ -190,7 +191,9 @@ public class Controller {
 					System.out.println("DisconnectedTheClient");
 				} else {
 					new ConnectionBox("Connect", 250, 250);
-					isConnected = true;
+					if (!isConnected) {connect.setSelected(false);}
+					
+						
 				}
 
 			}

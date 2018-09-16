@@ -46,6 +46,7 @@ public class PortBox {
 			if (Utils.validPORT(port.getText())) {
 
 				Controller.server = new Server(Integer.parseInt(port.getText()));
+				Controller.isHosting = true;
 
 				window.close();
 			} else {

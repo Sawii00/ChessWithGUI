@@ -53,6 +53,7 @@ public class ConnectionBox {
 				System.out.println("Connecting to: " + ip.getText() + ", Port: " + port.getText());
 				
 				Controller.client = new Client(ip.getText(),port.getText());
+				Controller.isConnected = true;
 
 				window.close();
 			} else {
