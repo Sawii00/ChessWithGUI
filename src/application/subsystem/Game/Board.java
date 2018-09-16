@@ -35,6 +35,29 @@ public class Board {
 		
 		setUpPieces();
 	}
+	
+	public String boardToString() {
+		String result = "";
+		for(int i = 0;i<squares.length;i++) {
+			for (int j = 0; j < squares[i].length; j++) {
+				try {
+					if (squares[i][j].piece.player == Controller.pm.player1) {
+						result = result+"1,"+squares[i][j].piece.getType();
+					}else if(squares[i][j].piece.player == Controller.pm.player2) {
+						result = result+"2,"+squares[i][j].piece.getType();
+					}
+				} catch (NullPointerException e) {
+					result = result+"1,NULL";
+				}
+				
+				result = result+";";
+			}			
+		}
+		
+		
+		
+		return result;
+	}
 	public void setUpPieces() {
 		//set the initial pieces on the board
 		width = width-1;
