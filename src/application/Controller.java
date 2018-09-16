@@ -2,6 +2,7 @@ package application;
 
 import application.subsystem.Game.Board;
 import application.subsystem.Game.PlayerManager;
+import application.subsystem.IO.File;
 import application.subsystem.Networking.Client;
 import application.subsystem.Networking.ConnectionBox;
 import application.subsystem.Networking.PortBox;
@@ -44,7 +45,6 @@ public class Controller {
 		gridPane = (GridPane) Main.mainScene.lookup("#gridPane");
 		syncArrayGrid();
 		setMenus();
-
 	}
 
 	public void dragDetected(MouseEvent e) {
