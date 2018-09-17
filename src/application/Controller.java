@@ -1,5 +1,7 @@
 package application;
 
+
+
 import application.subsystem.Game.Board;
 import application.subsystem.Game.PlayerManager;
 import application.subsystem.IO.ImportBox;
@@ -45,7 +47,6 @@ public class Controller {
 		gridPane = (GridPane) Main.mainScene.lookup("#gridPane");
 		syncArrayGrid();
 		setMenus();
-
 	}
 
 	public void dragDetected(MouseEvent e) {
@@ -129,15 +130,12 @@ public class Controller {
 		CheckMenuItem host = (CheckMenuItem) multiplayer.getItems().get(0);
 		CheckMenuItem connect = (CheckMenuItem) multiplayer.getItems().get(1);
 		MenuItem about = help.getItems().get(0);
-		
-		
+
 		importGame.setOnAction(e -> {
-			
+
 			new ImportBox("Import", 250, 250);
-			
-			
+
 		});
-		
 
 		reset.setOnAction(e -> {
 			if (host.isSelected() || connect.isSelected()) {
@@ -155,11 +153,10 @@ public class Controller {
 
 					System.out.println("Socket chiuso");
 
-				}
-				else if (Controller.client!=null) {
+				} else if (Controller.client != null) {
 					Controller.client.socketClose();
 					System.out.println("Socket chiuso");
-					
+
 				}
 
 				Platform.exit();
@@ -179,8 +176,9 @@ public class Controller {
 					System.out.println("DisconnectedHosting");
 				} else {
 					new PortBox("Host", 250, 250);
-					if (!isHosting) {host.setSelected(false);}
-					
+					if (!isHosting) {
+						host.setSelected(false);
+					}
 
 				}
 
@@ -202,9 +200,10 @@ public class Controller {
 					System.out.println("DisconnectedTheClient");
 				} else {
 					new ConnectionBox("Connect", 250, 250);
-					if (!isConnected) {connect.setSelected(false);}
-					
-						
+					if (!isConnected) {
+						connect.setSelected(false);
+					}
+
 				}
 
 			}
