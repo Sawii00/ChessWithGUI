@@ -1,12 +1,10 @@
 package application;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+
 
 import application.subsystem.Game.Board;
 import application.subsystem.Game.PlayerManager;
-import application.subsystem.IO.File;
+import application.subsystem.IO.ImportBox;
 import application.subsystem.Networking.Client;
 import application.subsystem.Networking.ConnectionBox;
 import application.subsystem.Networking.PortBox;
@@ -132,6 +130,7 @@ public class Controller {
 		CheckMenuItem host = (CheckMenuItem) multiplayer.getItems().get(0);
 		CheckMenuItem connect = (CheckMenuItem) multiplayer.getItems().get(1);
 		MenuItem about = help.getItems().get(0);
+
 		importGame.setOnAction(e -> {
 
 			new ImportBox("Import", 250, 250);
