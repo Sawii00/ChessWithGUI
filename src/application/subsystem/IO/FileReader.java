@@ -22,10 +22,8 @@ public class FileReader {
 			fis = new FileInputStream(uri);
 			reader = new DataInputStream(fis);
 			content = reader.readUTF();
+			applyFileContent(content);
 
-		} catch (Exception e) {
-			// if any I/O error occurs
-			e.printStackTrace();
 		} finally {
 			// releases any associated system files with this stream
 			if (fis != null)
@@ -35,7 +33,7 @@ public class FileReader {
 		}
 	}
 
-	public void syncro(String file) {
+	public void applyFileContent(String file) {
 
 		String temp[] = file.split(";");
 		String temp2[];

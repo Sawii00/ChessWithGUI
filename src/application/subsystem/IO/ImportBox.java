@@ -46,12 +46,12 @@ public class ImportBox {
 		Button button = new Button("Set");
 		button.setOnMouseClicked(e -> {
 			try {
-				FileReader file = new FileReader(URI.getText());
-				file.syncro(file.content);
+				new FileReader(URI.getText());
+				window.close();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				new BasicAlertBox("Error","Error importing the save, check the path",250,100);
 			}
+			
 			
 
 		});

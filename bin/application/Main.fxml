@@ -106,6 +106,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="Game">
             <items>
+                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem mnemonicParsing="false" text="Import" />
               <MenuItem mnemonicParsing="false" text="Reset" />
                   <MenuItem mnemonicParsing="false" text="Close" />
             </items>

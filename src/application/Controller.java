@@ -1,9 +1,8 @@
 package application;
 
-
-
 import application.subsystem.Game.Board;
 import application.subsystem.Game.PlayerManager;
+import application.subsystem.IO.File;
 import application.subsystem.IO.ImportBox;
 import application.subsystem.Networking.Client;
 import application.subsystem.Networking.ConnectionBox;
@@ -47,6 +46,7 @@ public class Controller {
 		gridPane = (GridPane) Main.mainScene.lookup("#gridPane");
 		syncArrayGrid();
 		setMenus();
+
 	}
 
 	public void dragDetected(MouseEvent e) {
@@ -124,12 +124,20 @@ public class Controller {
 		Menu help = menu.getMenus().get(2);
 
 		// @TODO we have to set the reset button
-		MenuItem importGame = game.getItems().get(0);
-		MenuItem reset = game.getItems().get(1);
-		MenuItem close = game.getItems().get(2);
+		MenuItem save = game.getItems().get(0);
+		MenuItem importGame = game.getItems().get(1);
+		MenuItem reset = game.getItems().get(2);
+		MenuItem close = game.getItems().get(3);
 		CheckMenuItem host = (CheckMenuItem) multiplayer.getItems().get(0);
 		CheckMenuItem connect = (CheckMenuItem) multiplayer.getItems().get(1);
 		MenuItem about = help.getItems().get(0);
+		
+		save.setOnAction(e->{
+			
+			File file = new File("Save",board.boardToString());
+			file.writeToDisk("");
+			
+		});
 
 		importGame.setOnAction(e -> {
 
