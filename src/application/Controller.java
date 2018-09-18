@@ -134,7 +134,7 @@ public class Controller {
 		
 		save.setOnAction(e->{
 			
-			File file = new File("Save",board.boardToString());
+			File file = new File("Save",Board.boardToString());
 			file.writeToDisk("");
 			
 		});

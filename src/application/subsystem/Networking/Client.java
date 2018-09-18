@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import application.Controller;
+import application.subsystem.IO.FileReader;
 import application.subsystem.Utils.Utils;
 import javafx.application.Platform;
 
@@ -90,6 +91,13 @@ public class Client implements Runnable {
 			System.out.println("Client connected");
 			dout = new DataOutputStream(socket.getOutputStream());
 			din = new DataInputStream(socket.getInputStream());
+			String state = din.readUTF();
+			Platform.runLater(()->{
+				
+				FileReader.applyFileContent(state);
+
+				
+			});
 		} catch (IOException e) {
 
 		}

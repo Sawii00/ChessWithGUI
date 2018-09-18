@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import application.Controller;
+import application.subsystem.Game.Board;
 import application.subsystem.Utils.Utils;
 import javafx.application.Platform;
 
@@ -36,9 +37,12 @@ public class Server implements Runnable {
 	public void socketClose() {
 
 		try {
-			server.close();
-			din.close();
-			dout.close();
+			if (server != null && din != null && dout != null) {
+				server.close();
+				din.close();
+				dout.close();
+			}
+
 			t.interrupt();
 			if (Controller.isConnected) {
 				Controller.isConnected = false;
@@ -96,19 +100,13 @@ public class Server implements Runnable {
 			din = new DataInputStream(socket.getInputStream());
 			dout = new DataOutputStream(socket.getOutputStream());
 
-			// send the board configuration
-			if (Controller.pm.player2.myTurn) {
-				dout.writeUTF("Server");
+			dout.writeUTF(Board.boardToString());
 
-			} else {
-				dout.writeUTF("Client");
-			}
-
-			Thread.sleep(500);
+			//Thread.sleep(500);
 
 			// send the turn
 
-		} catch (IOException | InterruptedException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

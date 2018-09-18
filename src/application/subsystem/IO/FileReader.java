@@ -33,7 +33,7 @@ public class FileReader {
 		}
 	}
 
-	public void applyFileContent(String file) {
+	public static void applyFileContent(String file) {
 
 		String temp[] = file.split(";");
 		String temp2[];
@@ -65,6 +65,18 @@ public class FileReader {
 					piece = new Rook(position, player);
 				} else if (temp2[1].equals("NULL")) {
 					piece = null;
+				}
+				
+				if (temp[temp.length-1].equals("2")){
+					Controller.pm.player2.myTurn=true;
+					Controller.pm.player1.myTurn=false;	
+				} else if (temp[temp.length-1].equals("1")){
+					Controller.pm.player2.myTurn=false;
+					Controller.pm.player1.myTurn=true;
+				}else {
+					
+					System.out.println("Error: no turn info");
+					
 				}
 				
 				Board.squares[i][k].piece=piece;

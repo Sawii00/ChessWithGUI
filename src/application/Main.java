@@ -15,14 +15,7 @@ import javafx.scene.Scene;
  * WHEN A CLIENT CONNECTS AND YOU MOVE A DIFFERENT PIECE, THE PREVIOUS PIECE MOVES WHERE YOU TOLD HIM TO
  * #NEVERLUCKY
  * 
- * Sync the table when reconnecting
- * Server needs to send a message stating the turn
- * Create primary file for board status
- * 
- * 
- * 
- * Bug: when hitting host or connect and then closing the pop window
- * */
+  * */
 
 
 public class Main extends Application {
