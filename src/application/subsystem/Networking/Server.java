@@ -47,6 +47,7 @@ public class Server implements Runnable {
 			if (Controller.isConnected) {
 				Controller.isConnected = false;
 			}
+			
 			if (Controller.isHosting) {
 				Controller.isHosting = false;
 			}

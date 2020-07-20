@@ -1,6 +1,7 @@
 package application.subsystem.Utils;
 
 import application.subsystem.Game.Board;
+import application.subsystem.Game.Square;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
@@ -90,7 +91,13 @@ public class Utils {
 		}
 
 	}
-
+	
+	public static Square stdToReversed(Square original, int board_size)
+	{
+		Square res = new Square(original.position, original.piece);
+		res.position.id_y = board_size - original.position.id_y - 1;
+		return res;
+	}
 	
 
 }

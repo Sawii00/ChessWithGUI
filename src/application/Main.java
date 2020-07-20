@@ -15,7 +15,11 @@ import javafx.scene.Scene;
  * WHEN A CLIENT CONNECTS AND YOU MOVE A DIFFERENT PIECE, THE PREVIOUS PIECE MOVES WHERE YOU TOLD HIM TO
  * #NEVERLUCKY
  * 
-  * */
+ * 
+ * the issue with moving pieces in multiplayer is related to the piece ownership... pawns are player1, but queen is player2
+ * 
+ * 
+ */
 
 
 public class Main extends Application {

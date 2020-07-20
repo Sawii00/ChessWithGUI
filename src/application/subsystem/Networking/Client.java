@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import application.Controller;
+import application.subsystem.Game.Board;
 import application.subsystem.IO.FileReader;
 import application.subsystem.Utils.Utils;
 import javafx.application.Platform;
@@ -25,6 +26,7 @@ public class Client implements Runnable {
 		try {
 			this.port = Integer.parseInt(port);
 			this.ip = (Inet4Address) Inet4Address.getByName(ip);
+			//Controller.pm.player2.virtual = true;
 			Controller.pm.player2.virtual = true;
 
 			if (t == null) {
@@ -95,9 +97,10 @@ public class Client implements Runnable {
 			Platform.runLater(()->{
 				
 				FileReader.applyFileContent(state);
-
-				
+				Board.reverse();
+				Controller.syncArrayGrid();
 			});
+
 		} catch (IOException e) {
 
 		}

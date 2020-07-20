@@ -23,10 +23,11 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 public class Controller {
 
-	static Board board;
+	public static Board board;
 	static GridPane gridPane;
 	static Label tempLabel;
 	public static Server server;
@@ -100,6 +101,14 @@ public class Controller {
 
 				try {
 					tempLabel.setText(Board.squares[i][j].piece.getType().toString());
+					if(Board.squares[i][j].piece.player.name == "Player 2")
+					{
+						tempLabel.setTextFill(Color.GRAY);
+					}
+					else if(Board.squares[i][j].piece.player.name == "Player 1")
+					{
+						tempLabel.setTextFill(Color.BLACK);				
+					}
 				} catch (Exception e) {
 					tempLabel.setText("");
 				}
