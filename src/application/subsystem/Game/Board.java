@@ -13,7 +13,7 @@ import application.subsystem.Utils.Position;
 public class Board {
 
 	static public Square[][] squares;
-	int width, height = 8;
+	static public int width, height = 8;
 
 	public Board(int width, int height) {
 
@@ -33,6 +33,8 @@ public class Board {
 		setUpPieces();
 	}
 
+
+	
 	static public void reverse()
 	{
 		System.out.println("Reversing");
@@ -41,8 +43,8 @@ public class Board {
 			for(int j = 0; j < squares[i].length; ++j)
 			{
 				Square sq = squares[i][j];
-				squares[i][j] = squares[squares.length - 1 - i][j];
-				squares[squares.length - 1 - i][j] = sq;
+				squares[i][j] = squares[ i][squares.length - 1 -j];
+				squares[ i][squares.length - 1 -j] = sq;
 			}
 			
 		}

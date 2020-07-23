@@ -76,7 +76,7 @@ public class Server implements Runnable {
 				}
 				String response = din.readUTF();
 
-				if (Utils.decodeString(response)) {
+				if (Utils.decodeString(response, false)) {
 					Platform.runLater(() -> {
 						Controller.syncArrayGrid();
 					});

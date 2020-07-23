@@ -89,8 +89,7 @@ public abstract class BasicPiece {
 	public void move(Square destination) {
 		if (calcDestination(destination)) {
 			Controller.pm.successfulMove();
-			String message = position.id_x + "," + position.id_y + "-" + destination.position.id_x + ","
-					+ destination.position.id_y;
+			
 			for (Square i : path(destination)) {
 //				System.out.print(i.position.id_x);
 //				System.out.print(", ");
@@ -107,11 +106,16 @@ public abstract class BasicPiece {
 
 			if (Controller.client != null) {
 				// client method
+				String message = (position.id_x) + "," + (Board.height - position.id_y) + "-" + (destination.position.id_x) + ","
+						+ (Board.height - destination.position.id_y);
 				Controller.client.pieceMoved(message);
 
 			}
+			
 			if (Controller.server != null) {
 				// server method
+				String message = position.id_x + "," + position.id_y + "-" + destination.position.id_x + ","
+						+ destination.position.id_y;
 				Controller.server.pieceMoved(message);
 			}
 

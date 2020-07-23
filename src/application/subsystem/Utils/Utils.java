@@ -75,16 +75,21 @@ public class Utils {
 
 	}
 
-	public static boolean decodeString(String string) {
+	public static boolean decodeString(String string, boolean reversed) {
 		try {
 		String[] positions = string.split("-");
 		String[] pos = positions[0].split(",");
 		String[] des = positions[1].split(",");
 
 		// devil's function
-		
-			Board.squares[Integer.parseInt(pos[0])][Integer.parseInt(pos[1])].piece
-					.move(Board.squares[Integer.parseInt(des[0])][Integer.parseInt(des[1])]);
+			if(!reversed)
+			{
+				Board.squares[Integer.parseInt(pos[0])][Integer.parseInt(pos[1])].piece.move(Board.squares[Integer.parseInt(des[0])][Integer.parseInt(des[1])]);
+			}
+			else
+			{
+				Board.squares[Board.height - Integer.parseInt(pos[0])][Board.width - Integer.parseInt(pos[1])].piece.move(Board.squares[Board.height - Integer.parseInt(des[0])][Board.width - Integer.parseInt(des[1])]);
+			}
 			return true;
 		} catch (java.lang.NullPointerException | NumberFormatException |ArrayIndexOutOfBoundsException e) {
 			return false;

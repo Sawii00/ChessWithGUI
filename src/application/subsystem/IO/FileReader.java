@@ -85,7 +85,7 @@ public class FileReader {
 
 		}
 		
-		Controller.syncArrayGrid();
+		//Controller.syncArrayGrid();
 
 	}
 

@@ -67,7 +67,7 @@ public class Client implements Runnable {
 
 			while (true) {
 				String response = din.readUTF();
-				if (Utils.decodeString(response)) {
+				if (Utils.decodeString(response, true)) {
 					Platform.runLater(() -> {
 						Controller.syncArrayGrid();
 					});
